@@ -1,0 +1,79 @@
+//variables
+:root {
+  --color-bg: #ababba;
+  --color-txt: #ababba;
+}
+#root {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+#App {
+  height: 100vh;
+  display: grid;
+  grid-template-columns: minmax(300px, 1fr) minmax(200px, 300px);
+  grid-template-rows: 0.75fr 0.25fr;
+  gap: 0px 0px;
+  grid-template-areas:
+    "displayer sidebar"
+    "bottombar sidebar";
+  .box {
+    border: 5px solid var(--color-bg);
+    padding: 2vh 1vw;
+  }
+  #displayer {
+    grid-area: displayer;
+    display: grid;
+    place-items: center;
+    .bubble-tea {
+      max-width: fit-content;
+      max-height: 70%;
+    }
+  }
+
+  #sidebar {
+    grid-area: sidebar;
+    color: var(--color-txt);
+    text-transform: uppercase;
+    .sidebar__title {
+      text-align: center;
+    }
+    .sidebar_inputs-container {
+      min-height: 50%;
+      padding: 5vw 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      flex: 1;
+      .sidebar__input-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+    }
+  }
+
+  #bottombar {
+    grid-area: bottombar;
+  }
+}
+
+//functions
+@function superClamp($max, $vw: 1024) {
+  $min: $max * 0.7px;
+  $maxvw: $max * 100 / $vw;
+  $maxpx: $max * 1px;
+  @return clamp($min, $maxvw * 1vw, $maxpx);
+}
+@function superMinMax($max, $vw: 1024) {
+  $min: $max * 0.7px;
+  $maxvw: $max * 100 / $vw;
+  $maxpx: $max * 1px;
+  @return #{"min(max(#{$min}, #{$maxvw * 1vw}), #{$maxpx})"};
+}
+@mixin clamp($property, $max, $vw: 1024) {
+  #{$property}: $max * 1px;
+  #{$property}: superMinMax($max, $vw);
+  #{$property}: superClamp($max, $vw);
+}
