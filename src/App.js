@@ -24,8 +24,8 @@ function App() {
   const [tube, setTube] = useState(false);
   const [title, setName] = useState("Thé matcha");
   const [smile, setSmile] = useState(false);
+  const [titleClass, setTitleClass] = useState("font-family-0");
 
-  const titleRef = useRef(null)
   const handleClick = useCallback((e) => {
     e.preventDefault();
     colors[e.target.name][1]((oldValue) => {
@@ -36,10 +36,9 @@ function App() {
     });
   }, []);
 
-
   return (
     <div id="App">
-      <div id="displayer" className="box">
+      <section id="displayer">
         <SVG
           bubble={bubble.color}
           can={can.color}
@@ -48,92 +47,104 @@ function App() {
           size={size}
           tea={tea.color}
         />
-        <h1 className="name" ref={titleRef}>{title}</h1>
-      </div>
-      <div id="sidebar" className="box">
+        <h1 className={"name " + titleClass}>{title}</h1>
+      </section>
+      <aside id="sidebar">
         <h1 className="sidebar__title">Bubble tea generator</h1>
         <div className="sidebar_inputs-container">
-          <div className="sidebar__input-wrapper">
-            <label className="label">nom</label>
+
+            <label className="label sidebar__input-wrapper">
+              nom
+              <input
+                type="text"
+                className="input"
+                onChange={(e) => {
+                  setTitleClass(`font-family-${Math.floor(Math.random() * 5)}`);
+                  setName(e.target.value);
+                }}
+                name="Name"
+                value={title}
+                placeholder="Tea"
+              />
+            </label>
+
+
+            <label className="label sidebar__input-wrapper">
+              gobelet
+              <input
+                name="can"
+                type="color"
+                className="input"
+                onClick={handleClick}
+                onChange={()=>{}}
+                value={can.color}
+              />
+            </label>
+
+
+            <label className="label sidebar__input-wrapper">
+              tea
+              <input
+                name="tea"
+                type="color"
+                className="input"
+                onClick={handleClick}
+                value={tea.color}
+                onChange={()=>{}} //color input can not be read only and react warn without onChangeHandler...
+              />
+            </label>
+
+
+            <label className="label sidebar__input-wrapper">
+              tapioca
+              <input
+                name="bubble"
+                type="color"
+                className="input"
+                onClick={handleClick}
+                value={bubble.color}
+                onChange={()=>{}}
+              />
+            </label>
+
+
+          <label className="label sidebar__input-wrapper">
+            taille
             <input
-              type="text"
-              className="input"
-              onChange={(e) => {
-                titleRef.current.style.fontFamily =`var(--font-family-${Math.floor(Math.random()*5)})`
-                setName(e.target.value)}}
-              name="Name"
-              value={title}
-              placeholder="Tea"
-            />
-          </div>
-          <div className="sidebar__input-wrapper">
-            <label className="label">gobelet</label>
-            <input
-              type="color"
-              className="input"
-              onClick={handleClick}
-              name="can"
-              value={can.color}
-              readOnly
-            />
-          </div>
-          <div className="sidebar__input-wrapper">
-            <label className="label">tea</label>
-            <input
-              type="color"
-              className="input"
-              onClick={handleClick}
-              name="tea"
-              value={tea.color}
-              readOnly
-            />
-          </div>
-          <div className="sidebar__input-wrapper">
-            <label className="label">tapioca</label>
-            <input
-              type="color"
-              className="input"
-              onClick={handleClick}
-              name="bubble"
-              value={bubble.color}
-              readOnly
-            />
-          </div>
-          <div className="sidebar__input-wrapper">
-            <label className="label">taille</label>
-            <input
+              name="size"
               type="range"
               className="input"
-              max="100"
-              min="30"
+              max="70"
+              min="10"
               onChange={(e) => setSize(e.target.value)}
-              name="size"
               value={size}
             />
-          </div>
-          <div className="sidebar__input-wrapper">
-            <label className="label">paille</label>
+          </label>
+
+          <label className="label sidebar__input-wrapper">
+            paille
             <input
+            name="tube"
               type="checkbox"
               className="input"
               onChange={(e) => setTube(e.target.checked)}
-              name="tube"
               checked={tube}
             />
-          </div>
-          <div className="sidebar__input-wrapper">
-            <label className="label">sourire</label>
+          </label>
+
+          <label className="label sidebar__input-wrapper">
+            sourire
             <input
+              name="smile"
               type="checkbox"
               className="input"
               onChange={(e) => setSmile(e.target.checked)}
-              name="smile"
               checked={smile}
             />
-          </div>
+          </label>
         </div>
-      </div>
-      <div id="bottombar" className="box">
+      </aside>
+      <div id="bottombar">
         <div className="bottombar__Box">
           <Tea tea={tea.color} />
         </div>
