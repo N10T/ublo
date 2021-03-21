@@ -1,9 +1,13 @@
-import SVG from "./components/SVG";
-import Can from "./components/Can";
-import Tea from "./components/Tea";
-import Bubble from "./components/Bubble";
+import { useCallback, useState } from "react";
+
+//Style
 import "./App.scss";
-import { useCallback, useState, useRef, useEffect } from "react";
+
+//Components
+import Bubble from "./components/Bubble";
+import Can from "./components/Can";
+import SVG from "./components/SVG";
+import Tea from "./components/Tea";
 
 const palette = {
   tea: ["#FE8261", "#9A5B46", "#9DBEA2"],
@@ -47,7 +51,7 @@ function App() {
           size={size}
           tea={tea.color}
         />
-        <h1 className={"name " + titleClass}>{title}</h1>
+        <h1 className={"displayer__title " + titleClass}>{title}</h1>
       </section>
       <aside id="sidebar">
         <h1 className="sidebar__title">Bubble tea generator</h1>

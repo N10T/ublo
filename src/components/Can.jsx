@@ -1,11 +1,8 @@
-import React from "react";
-// import { ReactComponent as FullTea } from "../svg/fulltea.svg";
 
 export default function Can({ can }) {
   return (
     <svg
       className="bubble-tea"
-      //   {...props}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 133.2 188.9"
     >

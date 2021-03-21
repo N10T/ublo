@@ -1,6 +1,3 @@
-import React from "react";
-// import { ReactComponent as FullTea } from "../svg/fulltea.svg";
-
 export default function SVG({
   bubble,
   tea,

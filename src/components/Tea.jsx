@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function Tea({ tea }) {
   return (
     <svg className="bubble-tea" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 133.2 188.9" fill={tea}>

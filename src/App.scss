@@ -5,6 +5,7 @@
 :root {
   --color-bg: #f8faff;
   --color-txt: #2d3958;
+  --color-title: #0062ff;
   --color-border: #ababba;
   --font-family-0: "Rock Salt", cursive;
   --font-family-1: "Beth Ellen", cursive;
@@ -52,9 +53,10 @@
     grid-area: displayer;
     display: grid;
     place-items: center;
-    .name {
+    .displayer__title {
       @include clamp(font-size, 50);
       text-transform: uppercase;
+      color:var(--color-title)
     }
   }
 
@@ -66,6 +68,7 @@
     .sidebar__title {
       text-align: center;
       @include clamp(font-size, 30);
+      color:var(--color-title)
     }
     .label {
       font-weight: 500;
